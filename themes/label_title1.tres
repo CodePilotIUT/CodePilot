@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://1visb2l7uaws"]
+
+[ext_resource type="FontFile" uid="uid://ck0sv22h0tr3p" path="res://resources/fonts/Mokoto.ttf" id="1_lg3at"]
+
+[resource]
+font = ExtResource("1_lg3at")
+font_size = 65
+font_color = Color(0.121569, 0.647059, 1, 1)

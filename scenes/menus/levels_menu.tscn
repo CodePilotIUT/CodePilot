@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://7h37ivyufhbf"]
+[gd_scene load_steps=4 format=3 uid="uid://7h37ivyufhbf"]
 
 [ext_resource type="Script" path="res://scripts/menus/levels_menu.gd" id="1_pbq47"]
+[ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="2_wvm5n"]
+[ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="3_h2gs0"]
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -11,19 +13,265 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pbq47")
 
-[node name="Button" type="Button" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = -16.0
-offset_right = 81.0
-offset_bottom = 16.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_wvm5n")
+color = Color(0.206507, 0.141545, 0.530648, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wvm5n")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LEVEL SELECT"
+label_settings = ExtResource("3_h2gs0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 30
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
 text = "Start"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button8" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button9" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button10" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button11" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button12" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button13" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button14" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button15" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button16" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button17" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button18" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button19" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button20" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button21" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button22" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button23" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button24" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button25" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button26" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button27" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button28" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button29" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button30" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button31" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[node name="Button32" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Start"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button3" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button4" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button5" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button6" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button7" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button8" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button9" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button10" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button11" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button12" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button13" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button14" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button15" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button16" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button17" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button18" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button19" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button20" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button21" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button22" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button23" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button24" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button25" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button26" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button27" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button28" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button29" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button30" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button31" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button32" to="." method="_on_button_pressed"]
