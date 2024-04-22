@@ -69,21 +69,18 @@ text = "JOUER"
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_g23ve")
-disabled = true
 text = "RÈGLES"
 
 [node name="ButtonCredits" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_g23ve")
-disabled = true
 text = "CRÉDITS"
 
 [node name="ButtonSettings" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_g23ve")
-disabled = true
 text = "PARAMÈTRES"
 
 [node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]

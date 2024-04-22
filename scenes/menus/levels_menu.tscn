@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7h37ivyufhbf"]
+[gd_scene load_steps=5 format=3 uid="uid://7h37ivyufhbf"]
 
 [ext_resource type="Script" path="res://scripts/menus/levels_menu.gd" id="1_pbq47"]
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="2_wvm5n"]
+[ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="3_4b660"]
 [ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="3_h2gs0"]
 
 [node name="LevelsMenu" type="Control"]
@@ -243,6 +244,14 @@ layout_mode = 2
 size_flags_horizontal = 6
 text = "Start"
 
+[node name="BackButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+script = ExtResource("3_4b660")
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button2" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button3" to="." method="_on_button_pressed"]
@@ -275,3 +284,4 @@ text = "Start"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button30" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button31" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button32" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="MarginContainer/BackButton" method="_on_back_button_pressed"]

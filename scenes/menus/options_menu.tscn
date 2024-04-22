@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b28hdusvwt04j"]
+[gd_scene load_steps=4 format=3 uid="uid://b28hdusvwt04j"]
 
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="1_pfoww"]
+[ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="2_dpkuq"]
+[ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="2_mjxko"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -32,3 +34,23 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+label_settings = ExtResource("2_mjxko")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Back"
+script = ExtResource("2_dpkuq")
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="MarginContainer/BackButton" method="_on_back_button_pressed"]
