@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c7h4xsgtulmem"
-path="res://.godot/imported/Car.dae-b59c83ce42172efbbaf510d036600995.scn"
+path="res://.godot/imported/Car.dae-6c559a7c209170afa4c1476a5d54381f.scn"
 
 [deps]
 
-source_file="res://resources/Car.dae"
-dest_files=["res://.godot/imported/Car.dae-b59c83ce42172efbbaf510d036600995.scn"]
+source_file="res://resources/3D Models/Car.dae"
+dest_files=["res://.godot/imported/Car.dae-6c559a7c209170afa4c1476a5d54381f.scn"]
 
 [params]
 
