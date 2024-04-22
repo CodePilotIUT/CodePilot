@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://8k313tdnkhmj"]
+
+[ext_resource type="Texture2D" uid="uid://bcqggky11nlym" path="res://resources/2D Textures/title-horizontal.png" id="1_siyq5"]
+[ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="2_g23ve"]
+[ext_resource type="Script" path="res://scripts/menus/main_menu.gd" id="2_x7rd5"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g23ve")
+script = ExtResource("2_x7rd5")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g23ve")
+color = Color(0.206507, 0.141545, 0.530648, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g23ve")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_g23ve")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 30
+
+[node name="Title" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_g23ve")
+texture = ExtResource("1_siyq5")
+expand_mode = 5
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+
+[node name="ButtonLevels" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+text = "JOUER"
+
+[node name="ButtonRules" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+disabled = true
+text = "RÈGLES"
+
+[node name="ButtonCredits" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+disabled = true
+text = "CRÉDITS"
+
+[node name="ButtonSettings" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+disabled = true
+text = "PARAMÈTRES"
+
+[node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g23ve")
+text = "QUITTER
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ButtonLevels" to="." method="_on_button_levels_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ButtonRules" to="." method="_on_button_rules_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ButtonCredits" to="." method="_on_button_credits_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ButtonExit" to="." method="_on_button_exit_pressed"]
