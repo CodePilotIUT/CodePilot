@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7hmr543x1msv"]
 
-[ext_resource type="Script" path="res://scripts/code_editor.gd" id="1_qkkdi"]
+[ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
 [ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
-[ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/3d_view.tscn" id="3_d5hdc"]
+[ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/ingame/3d_view.tscn" id="3_d5hdc"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ixf4l"]
 viewport_path = NodePath("HSplitContainer/RightPanel/SubViewport")
@@ -51,6 +51,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
@@ -71,6 +72,21 @@ script = ExtResource("2_1qtbh")
 hold_duration = 0.2
 is_vertical = true
 scroll_container = NodePath("..")
+
+[node name="Button" type="Button" parent="HSplitContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -52.0
+offset_right = 130.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Save"
 
 [node name="RightPanel" type="Panel" parent="HSplitContainer"]
 custom_minimum_size = Vector2(300, 0)
@@ -102,3 +118,4 @@ expand_mode = 1
 stretch_mode = 6
 
 [connection signal="sort_children" from="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" method="_on_sort_children"]
+[connection signal="pressed" from="HSplitContainer/LeftPanel/Button" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" method="_on_button_pressed"]

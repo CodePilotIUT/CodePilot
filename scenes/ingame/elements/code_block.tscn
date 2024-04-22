@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cp3otcbesdho4"]
 
-[ext_resource type="Script" path="res://scripts/code_block.gd" id="1_lnchk"]
+[ext_resource type="Script" path="res://scripts/code_block.gd" id="1_bowpm"]
 
 [node name="Control" type="Control"]
 clip_contents = true
@@ -17,7 +17,7 @@ offset_right = 150.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_lnchk")
+script = ExtResource("1_bowpm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(300, 40)
