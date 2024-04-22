@@ -7,7 +7,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_ixf4l"]
 viewport_path = NodePath("HSplitContainer/RightPanel/SubViewport")
 
-[node name="Control" type="Control"]
+[node name="IngameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,33 +31,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+split_offset = -120
 
 [node name="LeftPanel" type="Panel" parent="HSplitContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ColorRect" type="ColorRect" parent="HSplitContainer/LeftPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.928616, 0.505486, 0.337708, 1)
-
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/LeftPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 80
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/LeftPanel/MarginContainer"]
 layout_mode = 2
@@ -73,38 +64,41 @@ hold_duration = 0.2
 is_vertical = true
 scroll_container = NodePath("..")
 
-[node name="Button" type="Button" parent="HSplitContainer/LeftPanel"]
+[node name="Buttons" type="MarginContainer" parent="HSplitContainer/LeftPanel"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -52.0
-offset_right = 130.0
-offset_bottom = -23.0
+offset_top = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Buttons" type="HBoxContainer" parent="HSplitContainer/LeftPanel/Buttons"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BackButton" type="Button" parent="HSplitContainer/LeftPanel/Buttons/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Back"
+
+[node name="SaveButton" type="Button" parent="HSplitContainer/LeftPanel/Buttons/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 2.79
 text = "Save"
 
 [node name="RightPanel" type="Panel" parent="HSplitContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="HSplitContainer/RightPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.375836, 0.664058, 0.912156, 1)
-
-[node name="SubViewport" type="SubViewport" parent="HSplitContainer/RightPanel"]
-
-[node name="Node3D" parent="HSplitContainer/RightPanel/SubViewport" instance=ExtResource("3_d5hdc")]
 
 [node name="TextureRect" type="TextureRect" parent="HSplitContainer/RightPanel"]
 layout_mode = 1
@@ -117,5 +111,11 @@ texture = SubResource("ViewportTexture_ixf4l")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/RightPanel"]
+size = Vector2i(1080, 1080)
+size_2d_override_stretch = true
+
+[node name="Node3D" parent="HSplitContainer/RightPanel/SubViewport" instance=ExtResource("3_d5hdc")]
+
 [connection signal="sort_children" from="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" method="_on_sort_children"]
-[connection signal="pressed" from="HSplitContainer/LeftPanel/Button" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/LeftPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" method="_on_button_pressed"]
