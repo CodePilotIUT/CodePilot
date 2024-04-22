@@ -1,13 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bre813ww5moq2"]
 
+[ext_resource type="Environment" uid="uid://53xfuegkn0dn" path="res://themes/3d_view_environment.tres" id="1_g5b33"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh1v3"]
 albedo_color = Color(0.213737, 0.884352, 0.310658, 1)
-
-[sub_resource type="Environment" id="Environment_g4atj"]
-ambient_light_source = 3
-ambient_light_color = Color(0.431282, 0.611583, 1, 1)
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 7.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4a4r2"]
 resource_name = "Body"
@@ -261,7 +257,7 @@ size = Vector3(100, 0, 100)
 material = SubResource("StandardMaterial3D_qh1v3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
-environment = SubResource("Environment_g4atj")
+environment = ExtResource("1_g5b33")
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="."]
 gravity_scale = 0.0
@@ -275,6 +271,8 @@ shape = SubResource("ConvexPolygonShape3D_gslpv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.985253, 0.144544, -0.0915614, 0, 0.535123, 0.844774, 0.171103, -0.832316, 0.527231, -1.798, 25.411, 14.596)
+keep_aspect = 0
+environment = ExtResource("1_g5b33")
 projection = 1
 fov = 104.063
 size = 36.714
