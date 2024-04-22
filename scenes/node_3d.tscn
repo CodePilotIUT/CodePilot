@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://fwukkvagatme"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2qiub"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_2qiub")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.887011, -0.202417, 0.415017, 0, 0.898794, 0.438371, -0.461749, -0.38884, 0.79724, 0.915, 1.07, 1.975)
+projection = 1
+size = 2.5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.905, 1.54, 1.545)
