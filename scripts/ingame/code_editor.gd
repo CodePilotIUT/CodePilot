@@ -1,44 +1,95 @@
-extends Container
+extends Panel
 
-var code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
+const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
+const CodeBlock = preload("res://scripts/ingame/code_block.gd")
 
 func _ready():
-	populate_randomly(15)
+	populate_randomly(0)
 
-func populate_randomly(size):
-	for i in range(size):
-		var cb = code_block_scene.instantiate()
-		$CodeEditor.add_child(cb)
-		
+func _process(_delta):
+	# if there are code blocks (group "code_block"), hide EmptyMsg, otherwise show it
+	if get_length() > 0:
+		%EmptyMsg.hide()
+	else:
+		%EmptyMsg.show()
+
+func populate_randomly(n):
+	for i in range(n):
 		# Chose random color
 		var r = randf()
 		var g = randf()
 		var b = randf()
-		cb.get_node("background").modulate = Color(r,g,b)
 		
 		# Put random strings
 		var line = ""
-		for j in range(randi_range(3, 10)):
+		for j in range(randi_range(3, 5)):
 			line += str(i) + " "
 		line.erase(line.length() - 1, 1)
-		set_label(cb, line)
 		
 		# Show randomly the input box
-		cb.get_node("%Input").visible = randi_range(0, 1)
+		var has_input = randi_range(0, 1)
 
-func set_label(cb, label):
-	cb.get_node("%Label").text = label
+		add_new_code_block(line, Color(r, g, b), has_input)
 
-func get_label(cb):
-	return cb.get_node("%Label").text
+
+func add_new_code_block(label: String, color: Color, has_input: bool = false, pos: int = -1):
+	var cb = code_block_scene.instantiate()
+	cb.set_background_color(color)
+	cb.set_label(label)
+	cb.set_input_visibility(has_input)
+	
+	add_code_block(cb, pos)
+
+func add_code_block(cb: Control, pos: int = -1):
+	cb.add_to_group("editor_code_blocks")
+	cb.connect("gui_input", cb._on_button_input)
+	%CodeEditor.add_child(cb)
+	%CodeEditor.move_child(cb, pos)
+
+func del_code_block_at(pos: int = -1):
+	var cb = %CodeEditor.get_child(pos)
+	cb.queue_free()
+
+func del_code_block(cb: Control):
+	cb.queue_free()
+
 
 func _on_button_pressed():
-	var list = get_list_string()
-	print(list)
+	var code = get_code_as_string()
+	print(code)
 
-func get_list_string():
-	var list = []
-	for child in $CodeEditor.get_children():
-		var text = get_label(child)
+func get_list() -> Array[CodeBlock]:
+	var list: Array[CodeBlock] = []
+	for child: CodeBlock in %CodeEditor.get_children():
+		if child.is_in_group("code_blocks"):
+			list.append(child)
+	return list
+
+func get_list_string() -> Array[String]:
+	var list: Array[String] = []
+	for child: CodeBlock in get_list():
+		var text = child.get_label()
+		if child.has_input():
+			text += " (%s)" % child.get_input()
+
 		list.append(text)
 	return list
+
+func get_code_as_string() -> String:
+	var code: String = ""
+	for line in get_list_string():
+		code += line + "\n"
+	return code
+
+func get_length() -> int:
+	# get the number of code blocks (items in the group "code_block")
+	var length: int = 0
+	for child in %CodeEditor.get_children():
+		if child.is_in_group("code_blocks"):
+			length += 1
+	return length
+
+
+func clear():
+	for child in %CodeEditor.get_children():
+		child.queue_free()

@@ -1,18 +1,26 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp3otcbesdho4"]
 
-[ext_resource type="Script" path="res://scripts/code_block.gd" id="1_bowpm"]
+[ext_resource type="Script" path="res://scripts/ingame/code_block.gd" id="1_ut6ia"]
 [ext_resource type="Texture2D" uid="uid://dywdq0qdjr6sp" path="res://resources/2D Textures/code_block.png" id="2_aq31j"]
 [ext_resource type="LabelSettings" uid="uid://b76vsw1mnwp2g" path="res://themes/label_code_block.tres" id="3_gx1mh"]
 
-[node name="CodeBlock" type="Control"]
+[node name="CodeBlock" type="Control" groups=["code_blocks"]]
 clip_contents = true
 custom_minimum_size = Vector2(100, 45)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 300.0
-offset_bottom = 45.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -22.5
+offset_right = 150.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource("1_bowpm")
+script = ExtResource("1_ut6ia")
 
 [node name="background" type="NinePatchRect" parent="."]
 unique_name_in_owner = true
@@ -31,31 +39,40 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 metadata/_edit_use_anchors_ = true
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 3
+flat = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -20.5
-offset_bottom = 20.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 20
+mouse_filter = 2
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -67,6 +84,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+theme_override_constants/minimum_character_width = 3
 placeholder_text = "000"
 alignment = 1
 max_length = 3
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="Button" to="." method="_on_button_input"]

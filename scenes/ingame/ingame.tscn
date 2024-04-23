@@ -1,13 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7hmr543x1msv"]
+[gd_scene load_steps=17 format=3 uid="uid://c7hmr543x1msv"]
 
+[ext_resource type="Script" path="res://scripts/ingame/code_library_panel.gd" id="1_7g3jo"]
+[ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="1_a1spl"]
 [ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
 [ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
+[ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="2_qs5s0"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_wqp75"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_27w7h"]
 [ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/ingame/3d_view.tscn" id="3_d5hdc"]
+[ext_resource type="Texture2D" uid="uid://8n0m58rvp7w0" path="res://resources/2D Textures/empty_code_editor.png" id="5_1gdww"]
+[ext_resource type="LabelSettings" uid="uid://mjqp32dpb60h" path="res://themes/label_empty_code_editor.tres" id="6_68ksv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fefg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkb2t"]
+bg_color = Color(0, 0, 0, 0.639216)
+
+[sub_resource type="Resource" id="Resource_iw54o"]
+script = ExtResource("3_27w7h")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_s8i84"]
+script = ExtResource("3_27w7h")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2511d"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ixf4l"]
-viewport_path = NodePath("HSplitContainer/RightPanel/SubViewport")
+viewport_path = NodePath("HSplitContainer/3dViewPanel/SubViewport")
 
 [node name="IngameUI" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,20 +53,118 @@ grow_vertical = 2
 color = Color(0.305702, 0.730721, 0.549277, 1)
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-split_offset = -120
+split_offset = 100
 
-[node name="LeftPanel" type="Panel" parent="HSplitContainer"]
+[node name="CodePanel" type="Panel" parent="HSplitContainer"]
+unique_name_in_owner = true
+clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7fefg")
 
-[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/LeftPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HSplitContainer/CodePanel/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_constants/autohide = 0
+split_offset = 10
+dragger_visibility = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ButtonHideShow" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_qkb2t")
+text = "❮"
+
+[node name="CodeLibraryPanel" type="Panel" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_7g3jo")
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelTitle" type="Label" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BIBLIOTHÈQUE"
+label_settings = ExtResource("2_qs5s0")
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_wqp75")
+wheel_scroll_damper = SubResource("Resource_iw54o")
+dragging_scroll_damper = SubResource("Resource_s8i84")
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer/VBoxContainer/SmoothScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 15
+
+[node name="CodeLibrary" type="VBoxContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CodeEditorPanel" type="Panel" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0, 0, 0, 0)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2511d")
+script = ExtResource("1_qkkdi")
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,27 +176,108 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 80
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/LeftPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer"]
 layout_mode = 2
-script = ExtResource("1_qkkdi")
+theme_override_constants/separation = 20
 
-[node name="CodeEditor" type="Container" parent="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" node_paths=PackedStringArray("scroll_container")]
+[node name="PanelTitle" type="Label" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "INSTRUCTIONS"
+label_settings = ExtResource("2_qs5s0")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 15
+
+[node name="EmptyMsg" type="Control" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 1
+
+[node name="background" type="NinePatchRect" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/EmptyMsg"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+texture = ExtResource("5_1gdww")
+draw_center = false
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/EmptyMsg"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -20.5
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/EmptyMsg/MarginContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Insérer des instructions ici"
+label_settings = ExtResource("6_68ksv")
+
+[node name="CodeEditor" type="Container" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
 process_mode = 1
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_1qtbh")
 hold_duration = 0.2
+separation = 5
 is_vertical = true
-scroll_container = NodePath("..")
 
-[node name="Buttons" type="MarginContainer" parent="HSplitContainer/LeftPanel"]
+[node name="Buttons" type="MarginContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
+offset_top = -71.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 20
@@ -78,29 +285,35 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Buttons" type="HBoxContainer" parent="HSplitContainer/LeftPanel/Buttons"]
+[node name="Buttons" type="HBoxContainer" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons"]
+clip_contents = true
 layout_mode = 2
-size_flags_vertical = 8
 
-[node name="BackButton" type="Button" parent="HSplitContainer/LeftPanel/Buttons/Buttons"]
+[node name="BackButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_vertical = 4
 text = "Back"
+script = ExtResource("1_a1spl")
 
-[node name="SaveButton" type="Button" parent="HSplitContainer/LeftPanel/Buttons/Buttons"]
+[node name="SaveButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 8
+size_flags_vertical = 4
 size_flags_stretch_ratio = 2.79
 text = "Save"
 
-[node name="RightPanel" type="Panel" parent="HSplitContainer"]
+[node name="3dViewPanel" type="Panel" parent="HSplitContainer"]
+unique_name_in_owner = true
+clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="HSplitContainer/RightPanel"]
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer/3dViewPanel"]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,11 +324,13 @@ texture = SubResource("ViewportTexture_ixf4l")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="SubViewport" type="SubViewport" parent="HSplitContainer/RightPanel"]
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/3dViewPanel"]
 size = Vector2i(1080, 1080)
 size_2d_override_stretch = true
 
-[node name="Node3D" parent="HSplitContainer/RightPanel/SubViewport" instance=ExtResource("3_d5hdc")]
+[node name="Node3D" parent="HSplitContainer/3dViewPanel/SubViewport" instance=ExtResource("3_d5hdc")]
 
-[connection signal="sort_children" from="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" method="_on_sort_children"]
-[connection signal="pressed" from="HSplitContainer/LeftPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" method="_on_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/ButtonHideShow" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel" method="_on_button_hide_show_pressed"]
+[connection signal="sort_children" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" method="_on_sort_children"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/BackButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/BackButton" method="_on_back_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_button_pressed"]
