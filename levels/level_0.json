@@ -1,0 +1,32 @@
+{
+	"level_number": 0,
+	"title": "Hello World!",
+	"instructions": "Ecrire un programme qui fait blablabla... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.",
+	"challenges": {
+		"nb_instructions": 10,
+		"execution_time": 10
+	},
+	"initial_code": [
+		""
+	],
+	"available_instructions": [
+		
+	],
+	"map": [
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000",
+		"000000000000000"
+	]
+}
