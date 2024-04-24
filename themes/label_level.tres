@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cudfeteri2b60"]
+
+[ext_resource type="FontFile" uid="uid://ck0sv22h0tr3p" path="res://resources/fonts/Mokoto.ttf" id="1_10874"]
+
+[resource]
+font = ExtResource("1_10874")
+font_size = 60
+font_color = Color(0.207843, 0.584314, 0.858824, 1)

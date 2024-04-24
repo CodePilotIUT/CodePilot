@@ -1,9 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://7h37ivyufhbf"]
+[gd_scene load_steps=9 format=3 uid="uid://7h37ivyufhbf"]
 
 [ext_resource type="Script" path="res://scripts/menus/levels_menu.gd" id="1_pbq47"]
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="2_wvm5n"]
 [ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="3_4b660"]
 [ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="3_h2gs0"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_o48m0"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_apc2s"]
+
+[sub_resource type="Resource" id="Resource_f8at6"]
+script = ExtResource("5_apc2s")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_f4y1y"]
+script = ExtResource("5_apc2s")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -47,202 +61,21 @@ label_settings = ExtResource("3_h2gs0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_o48m0")
+wheel_scroll_damper = SubResource("Resource_f8at6")
+dragging_scroll_damper = SubResource("Resource_f4y1y")
+
+[node name="LevelsList" type="HFlowContainer" parent="MarginContainer/VBoxContainer/SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 30
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button5" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button6" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button7" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button8" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button9" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button10" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button11" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button12" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button13" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button14" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button15" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button16" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button17" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button18" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button19" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button20" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button21" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button22" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button23" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button24" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button25" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button26" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button27" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button28" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button29" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button30" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button31" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
-
-[node name="Button32" type="Button" parent="MarginContainer/VBoxContainer/HFlowContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Start"
+alignment = 1
 
 [node name="BackButton" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(120, 40)
@@ -252,36 +85,4 @@ size_flags_vertical = 0
 text = "Back"
 script = ExtResource("3_4b660")
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button2" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button3" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button4" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button5" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button6" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button7" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button8" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button9" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button10" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button11" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button12" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button13" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button14" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button15" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button16" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button17" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button18" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button19" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button20" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button21" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button22" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button23" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button24" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button25" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button26" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button27" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button28" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button29" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button30" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button31" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HFlowContainer/Button32" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BackButton" to="MarginContainer/BackButton" method="_on_back_button_pressed"]
