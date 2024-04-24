@@ -13,8 +13,6 @@ func _ready():
 	save_dir_path = game_executable_dir + "save_files/"
 	
 	init_save_dir()
-	for i in range(1, 4):
-		save_level(1, "Hello, World!")
 
 func init_save_dir():
 	if not DirAccess.dir_exists_absolute(save_dir_path):
@@ -25,3 +23,53 @@ func save_level(level_number, data):
 	print("Saving to: " + file_path)
 	var file = FileAccess.open(file_path, FileAccess.WRITE_READ)
 	file.store_string(data)
+
+func load_level_as_text(level_number: int) -> String:
+	var file_path = save_dir_path + "level_%d.codepilot" % level_number
+	print("Loading from: " + file_path)
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var data = file.get_as_text()
+	return data
+
+func load_level_as_code_dict(level_number: int) -> Array[Dictionary]:
+	var data = load_level_as_text(level_number)
+
+	var code_blocks = []
+	for line in data.split("\n"):
+		if line == "":
+			continue
+		
+		var function_name
+		var arg
+		if "(" in line and ")" in line:
+			var start = line.find("(")
+			var end = line.find(")")
+			function_name = line.substr(0, start).strip_edges()
+			arg = line.substr(start + 1, end - start - 1).strip_edges()
+		else:
+			function_name = line.strip_edges()
+			arg = null
+		
+		var code_block_dict = {
+			"function_name": function_name,
+			"arg": arg
+		}
+		code_blocks.append(code_block_dict)
+
+	return code_blocks
+
+func load_level_as_code_blocks(level_number: int) -> Array[CodeBlock]:
+	var code_blocks = load_level_as_code_dict(level_number)
+	var code_block_nodes = []
+	for code_block in code_blocks:
+		var function_name = code_block.get("function_name")
+		var arg = code_block.get("arg")
+		print("Function name: " + function_name)
+		print("Arg: " + str(arg))
+		
+		var code_block_node: CodeBlock = CodeBlocks.get_code_block(function_name)
+		if code_block_node != null:
+			if arg != null:
+				code_block_node.set_input(arg)
+			code_block_nodes.append(code_block_node)
+	return code_block_nodes

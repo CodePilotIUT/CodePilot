@@ -65,3 +65,21 @@ var code_blocks = [
 
 func get_color(rgb):
 	return Color(rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0)
+
+func get_code_block_dict(label: String) -> Dictionary:
+	for block in code_blocks:
+		if block["label"] == label:
+			return block
+	return {}
+
+func get_code_block(label: String) -> CodeBlock:
+	var cb_dict = get_code_block_dict(label)
+	if cb_dict == null:
+		return null
+
+	const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
+	var cb: CodeBlock = code_block_scene.instantiate()
+	cb.set_label(cb_dict.get("label"))
+	cb.set_background_color(CodeBlocks.get_color(cb_dict.get("color")))
+	cb.set_input_visibility(cb_dict.get("has_input"))
+	return cb

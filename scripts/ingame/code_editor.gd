@@ -4,6 +4,12 @@ const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
 const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
 
+func _ready():
+	GameData.load_level_data()
+	var code_blocks = SaveManager.load_level_as_code_blocks(GameData.get_value("level_number"))
+	for cb: CodeBlock in code_blocks:
+		add_code_block(cb)
+
 func populate_randomly(n):
 	for i in range(n):
 		# Chose random color
@@ -27,11 +33,13 @@ func populate_with_every_code_block_possible():
 		add_new_code_block(cb.label, CodeBlocks.get_color(cb.color), cb.has_input)
 
 
-func add_new_code_block(label: String, color: Color = Color.WHITE, has_input: bool = false, pos: int = -1):
+func add_new_code_block(label: String, color: Color = Color.WHITE, has_input: bool = false, input: String = "", pos: int = -1):
 	var cb = code_block_scene.instantiate()
 	cb.set_background_color(color)
 	cb.set_label(label)
 	cb.set_input_visibility(has_input)
+	if has_input and input != "":
+		cb.set_input(input)
 	
 	add_code_block(cb, pos)
 
