@@ -27,6 +27,9 @@ func save_level(level_number, data):
 func load_level_as_text(level_number: int) -> String:
 	var file_path = save_dir_path + "level_%d.codepilot" % level_number
 	print("Loading from: " + file_path)
+	
+	if not FileAccess.file_exists(file_path):
+		FileAccess.open(file_path, FileAccess.WRITE)
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	var data = file.get_as_text()
 	return data
