@@ -50,8 +50,8 @@ func add_to_library(label: String, color: Color, has_input: bool = false):
 
 func set_width(_width: int):
 	width = _width
-	var HSplitContainer = %CodePanel.get_node("MarginContainer").get_node("HSplitContainer")
-	HSplitContainer.split_offset = code_library.size.x - width
+	var HSplit = %CodePanel.get_node("MarginContainer").get_node("HSplitContainer")
+	HSplit.split_offset = code_library.size.x - width
 
 
 func open_panel():
