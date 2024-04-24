@@ -32,7 +32,7 @@ func populate_randomly(n):
 		add_new_code_block(line, Color(r, g, b), has_input)
 
 
-func add_new_code_block(label: String, color: Color, has_input: bool = false, pos: int = -1):
+func add_new_code_block(label: String, color: Color = Color.WHITE, has_input: bool = false, pos: int = -1):
 	var cb = code_block_scene.instantiate()
 	cb.set_background_color(color)
 	cb.set_label(label)
