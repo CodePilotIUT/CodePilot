@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd71j7mhxubdp"]
+[gd_scene load_steps=13 format=3 uid="uid://cd71j7mhxubdp"]
 
 [ext_resource type="ArrayMesh" uid="uid://c4vnfno58mgop" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_A.obj" id="1_f1xux"]
 [ext_resource type="ArrayMesh" uid="uid://d4nvuvmpwrf0i" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_B.obj" id="2_ovad5"]
@@ -9,10 +9,8 @@
 [ext_resource type="ArrayMesh" uid="uid://cu5ck5s4nplxc" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_G.obj" id="7_wm6u2"]
 [ext_resource type="ArrayMesh" uid="uid://dsf20dmp4f1hd" path="res://addons/kaykit_city_builder_bits/Assets/obj/building_H.obj" id="8_gnc6i"]
 [ext_resource type="ArrayMesh" uid="uid://blu1bj87fu5eo" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_corner.obj" id="9_p7pcq"]
-[ext_resource type="ArrayMesh" uid="uid://cp3650afjxuwf" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_corner_curved.obj" id="10_al1ps"]
 [ext_resource type="ArrayMesh" uid="uid://dhmxbuhwmrvuv" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_junction.obj" id="11_c8a80"]
 [ext_resource type="ArrayMesh" uid="uid://e8o7dayhng8b" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_straight.obj" id="12_248wg"]
-[ext_resource type="ArrayMesh" uid="uid://c5owioukf6wmo" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_straight_crossing.obj" id="13_gbe26"]
 [ext_resource type="ArrayMesh" uid="uid://bv70jtrfkxq3g" path="res://addons/kaykit_city_builder_bits/Assets/obj/road_tsplit.obj" id="14_hi54p"]
 
 [node name="City Tiles" type="Node3D"]
@@ -53,21 +51,13 @@ mesh = ExtResource("8_gnc6i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95751, 0, 3.74031)
 mesh = ExtResource("9_p7pcq")
 
-[node name="RoadCornerCurved" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137767, 0, 3.96916)
-mesh = ExtResource("10_al1ps")
-
 [node name="RoadJunction" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.62893, -4.76837e-07, 4.04618)
 mesh = ExtResource("11_c8a80")
 
 [node name="RoadStraight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2042, 0, 4.12995)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2042, 0, 4.18261)
 mesh = ExtResource("12_248wg")
-
-[node name="RoadStraightCrossing" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75271, 0, 4.12921)
-mesh = ExtResource("13_gbe26")
 
 [node name="RoadTsplit" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6598, -4.76837e-07, 4.32254)

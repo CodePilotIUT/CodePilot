@@ -1,19 +1,86 @@
-[gd_scene load_steps=4 format=3 uid="uid://birvu1218ds2r"]
+[gd_scene load_steps=4 format=3 uid="uid://cjtdoy7i83wxd"]
 
 [ext_resource type="Script" path="res://generation/grid_map.gd" id="1_kvevk"]
-[ext_resource type="MeshLibrary" uid="uid://debebc7m1riwr" path="res://generation/CityTiles.tres" id="1_lofe8"]
+[ext_resource type="MeshLibrary" uid="uid://7idg2wtawjdy" path="res://generation/CityTiles.tres" id="1_lofe8"]
 
-[sub_resource type="GDScript" id="GDScript_63k8c"]
-script/source = "extends GridMap
+[sub_resource type="GDScript" id="GDScript_4mlwj"]
+script/source = "@tool
+
+extends Node3D
+
+@onready var grid_map : GridMap =  $GridMap
+
+func _ready():
+	generate()
+	
+var x_size = 15
+var y_size = 15
+var maxRouteX = floor(round(x_size / 2 - 1))
+var maxRouteY = floor(round(y_size / 2 - 1))
+
+func generate():
+	grid_map.clear()
+	var routes = generate_routes(x_size, y_size)
+	grid_map.set_cell_item(Vector3i(0, 0, 0), 1)
+	for i in range(x_size):
+		for j in range(y_size):
+			if routes[i][j] == 1:
+				grid_map.set_cell_item(Vector3i(i, 0, j), 8)
+			else:
+				grid_map.set_cell_item(Vector3i(i, 0, j), 1)
+
+func generate_routes(x, y):
+	# Initialisation des tableaux
+	var routes = []
+	var starting_routes = []
+
+	for i in range(y):
+		routes.append([])
+		for j in range(x):
+			routes[i].append(0)
+
+	# Placement de la ligne verticale centrée
+	for i in range(1, y - 1):
+		routes[i][x / 2] = 1
+
+	# Placement de la ligne horizontale centrée
+	for j in range(1, x - 1):
+		routes[y / 2][j] = 1
+
+	# Remplissage du tableau starting_routes
+	for i in range(1, y - 1):
+		for j in range(1, x - 1):
+			if routes[i][j] == 1 and (i != y / 2 or j != x / 2):
+				if not ((i - 1 <= y / 2) and ( y / 2 <= i + 1) and (j - 1 <= x / 2) and (x / 2 <= j + 1)):
+					starting_routes.append(Vector2(i, j))
+
+	# Création des tableaux horizontal_routes et vertical_routes
+	var horizontal_routes = []
+	var vertical_routes = []
+
+	for route in starting_routes:
+		if route.x == y / 2:
+			vertical_routes.append(route)
+		if route.y == x / 2:
+			horizontal_routes.append(route)
+			
+	
+
+	
+	for a in range(len(routes)):
+		print(routes[a])
+	return routes
+
+
 "
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_kvevk")
 
 [node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 6.60005e-05, 0.000697751, -6.61668e-05, 1, 0.000214758, -0.000697736, -0.000214809, 1, 0, 0, 0)
 mesh_library = ExtResource("1_lofe8")
-cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 1, 0, 3, 1, 1, 3, 1, 2, 3, 1, 3, 3, 1, 4, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 4, 3, 3, 0, 3, 3, 1, 3, 3, 2, 3, 3, 3, 3, 3, 4, 3, 4, 0, 3, 4, 1, 3, 4, 2, 3, 4, 3, 3, 4, 4, 3)
+"cells": PackedInt32Array(0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 1, 0, 3, 1, 1, 3, 1, 2, 3, 1, 3, 3, 1, 4, 3, 1, 5, 3, 1, 6, 3, 1, 7, 9, 1, 8, 3, 1, 9, 3, 1, 10, 3, 1, 11, 3, 1, 12, 3, 1, 13, 3, 1, 14, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 4, 3, 2, 5, 3, 2, 6, 3, 2, 7, 9, 2, 8, 3, 2, 9, 3, 2, 10, 3, 2, 11, 3, 2, 12, 3, 2, 13, 3, 2, 14, 3, 3, 0, 3, 3, 1, 3, 3, 2, 3, 3, 3, 3, 3, 4, 3, 3, 5, 3, 3, 6, 3, 3, 7, 9, 3, 8, 3, 3, 9, 3, 3, 10, 3, 3, 11, 3, 3, 12, 3, 3, 13, 3, 3, 14, 3, 4, 0, 3, 4, 1, 3, 4, 2, 3, 4, 3, 3, 4, 4, 3, 4, 5, 3, 4, 6, 3, 4, 7, 9, 4, 8, 3, 4, 9, 3, 4, 10, 3, 4, 11, 3, 4, 12, 3, 4, 13, 3, 4, 14, 3, 5, 0, 3, 5, 1, 3, 5, 2, 3, 5, 3, 3, 5, 4, 3, 5, 5, 3, 5, 6, 3, 5, 7, 9, 5, 8, 3, 5, 9, 3, 5, 10, 3, 5, 11, 3, 5, 12, 3, 5, 13, 3, 5, 14, 3, 6, 0, 3, 6, 1, 3, 6, 2, 3, 6, 3, 3, 6, 4, 3, 6, 5, 3, 6, 6, 3, 6, 7, 9, 6, 8, 3, 6, 9, 3, 6, 10, 3, 6, 11, 3, 6, 12, 3, 6, 13, 3, 6, 14, 3, 7, 0, 3, 7, 1, 9, 7, 2, 9, 7, 3, 9, 7, 4, 9, 7, 5, 9, 7, 6, 9, 7, 7, 9, 7, 8, 9, 7, 9, 9, 7, 10, 9, 7, 11, 9, 7, 12, 9, 7, 13, 9, 7, 14, 3, 8, 0, 3, 8, 1, 3, 8, 2, 3, 8, 3, 3, 8, 4, 3, 8, 5, 3, 8, 6, 3, 8, 7, 9, 8, 8, 3, 8, 9, 3, 8, 10, 3, 8, 11, 3, 8, 12, 3, 8, 13, 3, 8, 14, 3, 9, 0, 3, 9, 1, 3, 9, 2, 3, 9, 3, 3, 9, 4, 3, 9, 5, 3, 9, 6, 3, 9, 7, 9, 9, 8, 3, 9, 9, 3, 9, 10, 3, 9, 11, 3, 9, 12, 3, 9, 13, 3, 9, 14, 3, 10, 0, 3, 10, 1, 3, 10, 2, 3, 10, 3, 3, 10, 4, 3, 10, 5, 3, 10, 6, 3, 10, 7, 9, 10, 8, 3, 10, 9, 3, 10, 10, 3, 10, 11, 3, 10, 12, 3, 10, 13, 3, 10, 14, 3, 11, 0, 3, 11, 1, 3, 11, 2, 3, 11, 3, 3, 11, 4, 3, 11, 5, 3, 11, 6, 3, 11, 7, 9, 11, 8, 3, 11, 9, 3, 11, 10, 3, 11, 11, 3, 11, 12, 3, 11, 13, 3, 11, 14, 3, 12, 0, 3, 12, 1, 3, 12, 2, 3, 12, 3, 3, 12, 4, 3, 12, 5, 3, 12, 6, 3, 12, 7, 9, 12, 8, 3, 12, 9, 3, 12, 10, 3, 12, 11, 3, 12, 12, 3, 12, 13, 3, 12, 14, 3, 13, 0, 3, 13, 1, 3, 13, 2, 3, 13, 3, 3, 13, 4, 3, 13, 5, 3, 13, 6, 3, 13, 7, 9, 13, 8, 3, 13, 9, 3, 13, 10, 3, 13, 11, 3, 13, 12, 3, 13, 13, 3, 13, 14, 3, 14, 0, 3, 14, 1, 3, 14, 2, 3, 14, 3, 3, 14, 4, 3, 14, 5, 3, 14, 6, 3, 14, 7, 3, 14, 8, 3, 14, 9, 3, 14, 10, 3, 14, 11, 3, 14, 12, 3, 14, 13, 3, 14, 14, 3)
 }
-script = SubResource("GDScript_63k8c")
+script = SubResource("GDScript_4mlwj")
