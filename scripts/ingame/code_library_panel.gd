@@ -16,9 +16,8 @@ func _ready():
 	custom_minimum_size.x = width
 	set_width(width)
 	
-	populate_randomly(15)
+	fill_library()
 
-func _process(_delta): pass
 
 func populate_randomly(n):
 	for i in range(n):
@@ -37,6 +36,10 @@ func populate_randomly(n):
 		var has_input = randi_range(0, 1)
 		
 		add_to_library(line, Color(r,g,b), has_input)
+
+func fill_library():
+	for cb in CodeBlocks.code_blocks:
+		add_to_library(cb.label, CodeBlocks.get_color(cb.color), cb.has_input)
 
 func add_to_library(label: String, color: Color, has_input: bool = false):
 	var cb = code_block_scene.instantiate()

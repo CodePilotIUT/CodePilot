@@ -3,15 +3,6 @@ extends Panel
 const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
 const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
-func _ready():
-	populate_randomly(0)
-
-func _process(_delta):
-	# if there are code blocks (group "code_block"), hide EmptyMsg, otherwise show it
-	if get_length() > 0:
-		%EmptyMsg.hide()
-	else:
-		%EmptyMsg.show()
 
 func populate_randomly(n):
 	for i in range(n):
@@ -31,6 +22,10 @@ func populate_randomly(n):
 
 		add_new_code_block(line, Color(r, g, b), has_input)
 
+func populate_with_every_code_block_possible():
+	for cb in CodeBlocks.code_blocks:
+		add_new_code_block(cb.label, CodeBlocks.get_color(cb.color), cb.has_input)
+
 
 func add_new_code_block(label: String, color: Color = Color.WHITE, has_input: bool = false, pos: int = -1):
 	var cb = code_block_scene.instantiate()
@@ -48,7 +43,7 @@ func add_code_block(cb: Control, pos: int = -1):
 
 func del_code_block_at(pos: int = -1):
 	var cb = %CodeEditor.get_child(pos)
-	cb.queue_free()
+	del_code_block(cb)
 
 func del_code_block(cb: Control):
 	cb.queue_free()
@@ -56,7 +51,8 @@ func del_code_block(cb: Control):
 
 func _on_save_button_pressed():
 	var code = get_code_as_string()
-	print(code)
+	var level_number = GameData.get_value("level_number")
+	SaveManager.save_level(level_number, code)
 
 func _on_clear_button_pressed():
 	clear()
@@ -96,7 +92,16 @@ func get_length() -> int:
 			length += 1
 	return length
 
-
 func clear():
 	for child in %CodeEditor.get_children():
-		child.queue_free()
+		del_code_block(child)
+
+func check_empty():
+	# if there are code blocks (group "code_block"), hide EmptyMsg, otherwise show it
+	if get_length() > 0:
+		%EmptyMsg.hide()
+	else:
+		%EmptyMsg.show()
+
+func _on_code_editor_update():
+	check_empty()
