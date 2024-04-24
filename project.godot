@@ -17,8 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global="*res://scripts/global.gd"
 GameData="*res://scripts/game_data.gd"
+SaveManager="*res://scripts/save_manager.gd"
+CodeBlocks="*res://scripts/code_blocks.gd"
 
 [editor_plugins]
 
