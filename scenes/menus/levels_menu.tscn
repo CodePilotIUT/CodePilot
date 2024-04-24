@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7h37ivyufhbf"]
+[gd_scene load_steps=10 format=3 uid="uid://7h37ivyufhbf"]
 
 [ext_resource type="Script" path="res://scripts/menus/levels_menu.gd" id="1_pbq47"]
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="2_wvm5n"]
@@ -18,6 +18,8 @@ script = ExtResource("5_apc2s")
 friction = 4.0
 minimum_velocity = 0.4
 rebound_strength = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0qt7"]
 
 [node name="LevelsMenu" type="Control"]
 layout_mode = 3
@@ -68,11 +70,18 @@ script = ExtResource("4_o48m0")
 wheel_scroll_damper = SubResource("Resource_f8at6")
 dragging_scroll_damper = SubResource("Resource_f4y1y")
 
-[node name="LevelsList" type="HFlowContainer" parent="MarginContainer/VBoxContainer/SmoothScrollContainer"]
-unique_name_in_owner = true
+[node name="CenterContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f0qt7")
+
+[node name="LevelsList" type="HFlowContainer" parent="MarginContainer/VBoxContainer/SmoothScrollContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 30
 alignment = 1
