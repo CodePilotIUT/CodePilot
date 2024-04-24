@@ -35,8 +35,8 @@ func set_star2(is_full: bool):
 		star.texture = load("res://resources/2D Textures/star_empty.png")
 
 
-# func _on_mouse_entered():
-# 	self.scale = Vector2(1.01, 1.01)
+func _on_mouse_entered():
+	self.scale = Vector2(1.01, 1.01)
 
-# func _on_mouse_exited():
-# 	self.scale = Vector2(1, 1)
+func _on_mouse_exited():
+	self.scale = Vector2(1, 1)
