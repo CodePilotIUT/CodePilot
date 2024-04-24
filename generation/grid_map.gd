@@ -19,9 +19,9 @@ func generate():
 	for i in range(x_size):
 		for j in range(y_size):
 			if routes[i][j] == 1:
-				grid_map.set_cell_item(Vector3i(i, 0, j), 8)
+				grid_map.set_cell_item(Vector3i(i, 0, j), 9)
 			else:
-				grid_map.set_cell_item(Vector3i(i, 0, j), 1)
+				grid_map.set_cell_item(Vector3i(i, 0, j), 3)
 
 func generate_routes(x, y):
 	# Initialisation des tableaux
@@ -58,7 +58,7 @@ func generate_routes(x, y):
 		if route.y == x / 2:
 			horizontal_routes.append(route)
 			
-	
+
 
 	
 	for a in range(len(routes)):
