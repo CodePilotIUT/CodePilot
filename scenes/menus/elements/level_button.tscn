@@ -89,6 +89,7 @@ texture = ExtResource("3_lg4mv")
 expand_mode = 1
 
 [node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,5 +100,6 @@ mouse_filter = 1
 text = "
 "
 flat = true
+metadata/path = ""
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
