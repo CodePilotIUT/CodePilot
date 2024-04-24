@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://cihctdjydtfwg"]
+
+[ext_resource type="Script" path="res://scripts/code_editor.gd" id="1_qkkdi"]
+[ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
+[ext_resource type="PackedScene" uid="uid://tld77n5abges" path="res://scenes/3d_view.tscn" id="3_d5hdc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ixf4l"]
+viewport_path = NodePath("HSplitContainer/RightPanel/SubViewport")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.305702, 0.730721, 0.549277, 1)
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel" type="Panel" parent="HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HSplitContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.928616, 0.505486, 0.337708, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HSplitContainer/LeftPanel/MarginContainer"]
+layout_mode = 2
+script = ExtResource("1_qkkdi")
+
+[node name="CodeEditor" type="Container" parent="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer" node_paths=PackedStringArray("scroll_container")]
+process_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_1qtbh")
+hold_duration = 0.2
+is_vertical = true
+scroll_container = NodePath("..")
+
+[node name="RightPanel" type="Panel" parent="HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HSplitContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.375836, 0.664058, 0.912156, 1)
+
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/RightPanel"]
+
+[node name="Node3D" parent="HSplitContainer/RightPanel/SubViewport" instance=ExtResource("3_d5hdc")]
+
+[node name="TextureRect" type="TextureRect" parent="HSplitContainer/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_ixf4l")
+expand_mode = 1
+stretch_mode = 6
+
+[connection signal="sort_children" from="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" to="HSplitContainer/LeftPanel/MarginContainer/ScrollContainer/CodeEditor" method="_on_sort_children"]
