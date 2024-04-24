@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://8yxuywdcopfq"]
+[gd_scene load_steps=6 format=3 uid="uid://8yxuywdcopfq"]
 
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="1_8mikb"]
 [ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="2_dietm"]
 [ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="2_sbg87"]
+[ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="3_amr2w"]
+[ext_resource type="LabelSettings" uid="uid://blg75ygcta6c7" path="res://themes/label_text.tres" id="4_ahcla"]
 
 [node name="RulesMenu" type="Control"]
 layout_mode = 3
@@ -38,12 +40,54 @@ theme_override_constants/margin_bottom = 50
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleHowToPlay" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "RULES"
+text = "Comment jouer ?"
 label_settings = ExtResource("2_sbg87")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TitleGoal" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "But du jeu"
+label_settings = ExtResource("3_amr2w")
+vertical_alignment = 1
+
+[node name="TextGoal" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CodePilot est un jeu interactif destiné à l'apprentissage de l'algorithmique, adapté pour tous niveaux. À travers la programmation d'une voiture sur un graphe représentant une route, les joueurs relèvent des défis d'algorithmique de difficulté croissante."
+label_settings = ExtResource("4_ahcla")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TitleRules" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Règles du jeu"
+label_settings = ExtResource("3_amr2w")
+vertical_alignment = 1
+
+[node name="TextRules" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Chaque niveau contient un défi à résoudre à l'aide d'un algorithme.
+Vous pouvez obtenir 2 étoiles par niveau : une en fonction du nombre d'instructions utilisées, et une autre en fonction du temps d'exécution. Bonne chance !"
+label_settings = ExtResource("4_ahcla")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TitleControls" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Commandes"
+label_settings = ExtResource("3_amr2w")
+vertical_alignment = 1
+
+[node name="TextControls" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "- Utilisez le clic gauche de la souris pour ajouter une instruction dans votre algorithme, depuis la bibliothèque d'instructions.
+- Maintenez le clic gauche de la souris pour déplacer une instruction dans votre algorithme.
+- Utilisez le clic droit de la souris pour supprimer une instruction de votre algorithme."
+label_settings = ExtResource("4_ahcla")
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(120, 40)
