@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyndqonkmmxek"]
+[gd_scene load_steps=10 format=3 uid="uid://cyndqonkmmxek"]
 
 [ext_resource type="Theme" uid="uid://do2w0036o0bxa" path="res://themes/menu_theme.tres" id="1_ov1c5"]
 [ext_resource type="LabelSettings" uid="uid://1visb2l7uaws" path="res://themes/label_title1.tres" id="2_b72i5"]
 [ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="2_xook7"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_ohr1p"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_qddvk"]
+[ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="5_5abbe"]
+[ext_resource type="LabelSettings" uid="uid://blg75ygcta6c7" path="res://themes/label_text.tres" id="6_hadld"]
+
+[sub_resource type="Resource" id="Resource_hv3xw"]
+script = ExtResource("4_qddvk")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_o6huy"]
+script = ExtResource("4_qddvk")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -44,6 +60,97 @@ text = "CREDITS"
 label_settings = ExtResource("2_b72i5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_ohr1p")
+wheel_scroll_damper = SubResource("Resource_hv3xw")
+dragging_scroll_damper = SubResource("Resource_o6huy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleTeam" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Développeurs"
+label_settings = ExtResource("5_5abbe")
+vertical_alignment = 1
+
+[node name="TextTeam" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Imaginé et développé par Alexandre MALFREYT, Lucas MONNIER et Baptiste Rey dans le cadre d'un projet à l'IUT d'Orsay."
+label_settings = ExtResource("6_hadld")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TitleInspirations" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "
+Inspirations"
+label_settings = ExtResource("5_5abbe")
+vertical_alignment = 1
+
+[node name="TextInspirations" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Nous nous sommes inspirés de différents jeux permettant d'apprendre la programmation :
+- Human Resource Machine: Jeu vidéo de programmation avec de l'algorithmique bas niveau proche de l'assembleur.
+- while True: learn(): Jeu vidéo éducatif sur la construction de systèmes d'IA avec du code visuel.
+- Advent of Code: Challenges de programmation sous forme de calendrier de l'avent.
+- Scratch: Plateforme éducative pour créer des jeux avec un langage visuel pour les enfants."
+label_settings = ExtResource("6_hadld")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TitleLicences" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "
+Licences Open Source"
+label_settings = ExtResource("5_5abbe")
+vertical_alignment = 1
+
+[node name="TextControls" type="Label" parent="MarginContainer/VBoxContainer/Panel/MarginContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Développé avec le moteur open-source Godot Engine (https://godotengine.org/) - License MIT
+
+Librairies utilisées :
+- SmoothScroll (https://github.com/SpyrexDE/SmoothScroll) - Licence MIT
+- ReorderableContainer (https://github.com/FoolLin/ReorderableContainer) - Licence MIT
+
+Assets utilisés :
+- KayKit - City Builder Bits (https://github.com/KayKit-Game-Assets/KayKit-City-Builder-Bits-1.0) - Licence CC0
+- Low-Poly Car (https://free3d.com/3d-model/low-poly-car-40967.html) - Personal Use License
+
+Polices d'écriture utilisées :
+- Mokoto (https://www.1001fonts.com/mokoto-font.html) - Licence FFP
+- Open Sans SemiBold (https://fonts.google.com/specimen/Open+Sans) - Licence OFL
+"
+label_settings = ExtResource("6_hadld")
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="BackButton" type="Button" parent="MarginContainer"]
 custom_minimum_size = Vector2(120, 40)

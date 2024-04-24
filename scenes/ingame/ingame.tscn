@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c7hmr543x1msv"]
+[gd_scene load_steps=18 format=3 uid="uid://c7hmr543x1msv"]
 
 [ext_resource type="Script" path="res://scripts/ingame/code_library_panel.gd" id="1_7g3jo"]
-[ext_resource type="Script" path="res://scripts/menus/elements/back_button.gd" id="1_a1spl"]
+[ext_resource type="Script" path="res://scenes/ingame/ingame.gd" id="1_g2kl6"]
 [ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
 [ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
 [ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="2_qs5s0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/ingame/3d_view.tscn" id="3_d5hdc"]
 [ext_resource type="Texture2D" uid="uid://8n0m58rvp7w0" path="res://resources/2D Textures/empty_code_editor.png" id="5_1gdww"]
 [ext_resource type="LabelSettings" uid="uid://mjqp32dpb60h" path="res://themes/label_empty_code_editor.tres" id="6_68ksv"]
+[ext_resource type="Script" path="res://scripts/ingame/elements/exit_button.gd" id="10_c8su6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fefg"]
 
@@ -41,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g2kl6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 clip_contents = true
@@ -289,13 +291,13 @@ theme_override_constants/margin_bottom = 20
 clip_contents = true
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
+[node name="ExitButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-text = "Back"
-script = ExtResource("1_a1spl")
+text = "Exit"
+script = ExtResource("10_c8su6")
 
 [node name="SaveButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
 clip_contents = true
@@ -332,5 +334,5 @@ size_2d_override_stretch = true
 
 [connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/ButtonHideShow" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel" method="_on_button_hide_show_pressed"]
 [connection signal="sort_children" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" method="_on_sort_children"]
-[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/BackButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/BackButton" method="_on_back_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ExitButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ExitButton" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_button_pressed"]
