@@ -38,3 +38,12 @@ func is_level_data_set() -> bool:
 func clear_level_data():
 	current_level_data = {}
 	current_level_path = ""
+
+func get_value(key: String) -> Variant:
+	return current_level_data[key]
+
+func get_value_or_null(key: String) -> Variant:
+	if current_level_data.has(key):
+		return current_level_data[key]
+	else:
+		return null
