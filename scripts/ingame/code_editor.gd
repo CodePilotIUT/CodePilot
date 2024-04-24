@@ -54,9 +54,16 @@ func del_code_block(cb: Control):
 	cb.queue_free()
 
 
-func _on_button_pressed():
+func _on_save_button_pressed():
 	var code = get_code_as_string()
 	print(code)
+
+func _on_clear_button_pressed():
+	clear()
+
+func _on_exit_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menus/levels_menu.tscn")
+	GameData.clear_level_data()
 
 func get_list() -> Array[CodeBlock]:
 	var list: Array[CodeBlock] = []

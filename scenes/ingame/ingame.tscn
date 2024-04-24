@@ -5,12 +5,12 @@
 [ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
 [ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
 [ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="2_qs5s0"]
+[ext_resource type="Script" path="res://scripts/ingame/code_panel.gd" id="2_wmvx3"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_wqp75"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_27w7h"]
 [ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/ingame/3d_view.tscn" id="3_d5hdc"]
 [ext_resource type="Texture2D" uid="uid://8n0m58rvp7w0" path="res://resources/2D Textures/empty_code_editor.png" id="5_1gdww"]
 [ext_resource type="LabelSettings" uid="uid://mjqp32dpb60h" path="res://themes/label_empty_code_editor.tres" id="6_68ksv"]
-[ext_resource type="Script" path="res://scripts/ingame/elements/exit_button.gd" id="10_c8su6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7fefg"]
 
@@ -72,6 +72,7 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7fefg")
+script = ExtResource("2_wmvx3")
 
 [node name="MarginContainer" type="MarginContainer" parent="HSplitContainer/CodePanel"]
 layout_mode = 1
@@ -297,7 +298,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "Exit"
-script = ExtResource("10_c8su6")
 
 [node name="SaveButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
 clip_contents = true
@@ -306,6 +306,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 size_flags_stretch_ratio = 2.79
 text = "Save"
+
+[node name="ClearButton" type="Button" parent="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 2.79
+text = "Clear"
 
 [node name="3dViewPanel" type="Panel" parent="HSplitContainer"]
 unique_name_in_owner = true
@@ -332,7 +340,32 @@ size_2d_override_stretch = true
 
 [node name="Node3D" parent="HSplitContainer/3dViewPanel/SubViewport" instance=ExtResource("3_d5hdc")]
 
+[node name="ToggleFullscreenButton" type="Button" parent="HSplitContainer/3dViewPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "Toggle Fullscreen"
+
+[node name="PlayButton" type="Button" parent="HSplitContainer/3dViewPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play"
+
 [connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/ButtonHideShow" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel" method="_on_button_hide_show_pressed"]
 [connection signal="sort_children" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CodeEditor" method="_on_sort_children"]
-[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ExitButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ExitButton" method="_on_exit_button_pressed"]
-[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ExitButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/SaveButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_save_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/Buttons/Buttons/ClearButton" to="HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_clear_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/3dViewPanel/ToggleFullscreenButton" to="HSplitContainer/CodePanel" method="toggle_code_panel"]
