@@ -34,7 +34,7 @@ func load_level_as_text(level_number: int) -> String:
 func load_level_as_code_dict(level_number: int) -> Array[Dictionary]:
 	var data = load_level_as_text(level_number)
 
-	var code_blocks = []
+	var code_blocks: Array[Dictionary] = []
 	for line in data.split("\n"):
 		if line == "":
 			continue
@@ -59,17 +59,17 @@ func load_level_as_code_dict(level_number: int) -> Array[Dictionary]:
 	return code_blocks
 
 func load_level_as_code_blocks(level_number: int) -> Array[CodeBlock]:
-	var code_blocks = load_level_as_code_dict(level_number)
-	var code_block_nodes = []
+	var code_blocks: Array[Dictionary] = load_level_as_code_dict(level_number)
+
+	var code_block_nodes: Array[CodeBlock] = []
 	for code_block in code_blocks:
 		var function_name = code_block.get("function_name")
 		var arg = code_block.get("arg")
-		print("Function name: " + function_name)
-		print("Arg: " + str(arg))
 		
 		var code_block_node: CodeBlock = CodeBlocks.get_code_block(function_name)
 		if code_block_node != null:
 			if arg != null:
 				code_block_node.set_input(arg)
 			code_block_nodes.append(code_block_node)
+
 	return code_block_nodes
