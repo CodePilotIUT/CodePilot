@@ -171,7 +171,7 @@ theme_override_constants/margin_right = 15
 [node name="CodeLibrary" type="VBoxContainer" parent="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel/MarginContainer/VBoxContainer/SmoothScrollContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 5
 
 [node name="CodeEditorPanel" type="Panel" parent="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
@@ -332,7 +332,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("2_1qtbh")
 hold_duration = 0.2
-separation = 5
+separation = 0
 is_vertical = true
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer"]
@@ -405,16 +405,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Plein écran"
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/HSplitContainer/3dViewPanel/MarginContainer/ToggleFullscreenButton"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.305702, 0.730721, 0.549277, 1)
 
 [node name="PlayButton" type="Button" parent="MarginContainer/HSplitContainer/3dViewPanel/MarginContainer"]
 custom_minimum_size = Vector2(130, 40)

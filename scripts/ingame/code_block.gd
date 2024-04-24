@@ -6,8 +6,6 @@ var code_editor
 
 func _ready():
 	code_editor = get_tree().root.get_node("IngameUI/MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel")
-	
-func _process(_delta): pass
 
 
 func set_label(label: String) -> void:
