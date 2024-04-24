@@ -1,7 +1,7 @@
 extends Panel
 
 const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
-const CodeBlock = preload("res://scripts/ingame/code_block.gd")
+const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
 func _ready():
 	populate_randomly(0)
@@ -68,11 +68,11 @@ func get_list() -> Array[CodeBlock]:
 func get_list_string() -> Array[String]:
 	var list: Array[String] = []
 	for child: CodeBlock in get_list():
-		var text = child.get_label()
+		var line = child.get_label()
 		if child.has_input():
-			text += " (%s)" % child.get_input()
+			line += " (%s)" % child.get_input()
 
-		list.append(text)
+		list.append(line)
 	return list
 
 func get_code_as_string() -> String:
