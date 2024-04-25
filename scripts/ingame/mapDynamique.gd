@@ -43,9 +43,11 @@ func get_road_type_and_orientation(x, y, level):
 	"""Get the road type and orientation of a cell in the level."""
 	var roads = get_adjacent_roads(x, y, level)
 	
+	# 4 ways
 	if roads['x-'] and roads['x+'] and roads['y-'] and roads['y+']:
 		return [9, 0]
 	
+	# 3 ways
 	elif roads['x-'] and roads['x+'] and roads['y-']:
 		return [11, 2]
 	elif roads['x-'] and roads['x+'] and roads['y+']:
@@ -55,11 +57,13 @@ func get_road_type_and_orientation(x, y, level):
 	elif roads['x+'] and roads['y-'] and roads['y+']:
 		return [11, 0]
 	
+	# 2 ways - Straight
 	elif roads['x-'] and roads['x+']:
 		return [10, 2]
 	elif roads['y-'] and roads['y+']:
 		return [10, 0]
 
+	# 2 ways - Corner	
 	elif roads['x-'] and roads['y-']:
 		return [8, 1]
 	elif roads['x-'] and roads['y+']:
@@ -69,6 +73,7 @@ func get_road_type_and_orientation(x, y, level):
 	elif roads['x+'] and roads['y+']:
 		return [8, 0]
 	
+	# 1 way (dead end)
 	elif roads['x-']:
 		return [10, 2]
 	elif roads['x+']:
@@ -78,6 +83,7 @@ func get_road_type_and_orientation(x, y, level):
 	elif roads['y+']:
 		return [10, 0]
 	
+	# other
 	else:
 		return [9, 0]
 	
