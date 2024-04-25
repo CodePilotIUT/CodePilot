@@ -24,5 +24,3 @@ func _process(delta):
 func _shake():
 	h_offset = amount * noise_h.get_noise_1d(noise_progress)
 	v_offset = amount * noise_v.get_noise_1d(noise_progress)
-	print(h_offset, v_offset)
-	

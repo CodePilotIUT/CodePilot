@@ -244,7 +244,7 @@ text = "Hello world!"
 label_settings = ExtResource("8_ljwso")
 autowrap_mode = 3
 
-[node name="LabellevelInstructions" type="Label" parent="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainerInstructions/Instructions/MarginContainer/VBoxContainer"]
+[node name="LabelLevelInstructions" type="Label" parent="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainerInstructions/Instructions/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
@@ -369,6 +369,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("12_d5tse")
 
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HSplitContainer/3dViewPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.313726, 0.505882, 1)
+
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/3dViewPanel"]
 clip_contents = true
 layout_mode = 1
@@ -379,7 +388,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("ViewportTexture_ixf4l")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/HSplitContainer/3dViewPanel"]
 size = Vector2i(1080, 1080)

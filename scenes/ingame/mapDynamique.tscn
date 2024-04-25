@@ -265,9 +265,9 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.990366, 0.00492477, 0.138388, 0.130886, 0.359605, 0.92388, -0.045215, 0.933092, -0.356785, 60, 300, -100)
+transform = Transform3D(-0.990448, 0.00469801, 0.137804, 0.130334, 0.358089, 0.924546, -0.0450027, 0.933676, -0.355281, 60, 300, -100)
 projection = 1
-size = 40.0
+size = 35.0
 near = 200.0
 far = 400.0
 script = ExtResource("3_5w7tl")
