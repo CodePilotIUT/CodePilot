@@ -15,7 +15,6 @@ func randomOrientation():
 	elif nbr <= 1:
 		return 22
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var level = GameData.get_value_or_null("level")
 	if level == null:
@@ -28,8 +27,3 @@ func _ready():
 				grid_map.set_cell_item(Vector3i(i, 0, j), batiment, randomOrientation())
 			else:
 				grid_map.set_cell_item(Vector3i(i, 0, j), 9)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
