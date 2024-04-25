@@ -1,14 +1,15 @@
 {
 	"level_number": 1,
 	"title": "Hello, World!",
-	"instructions": "Utilisez la fonction \"input\" pour récupérer une valeur, et la fonction \"output\" pour l'envoyer.\nVous devez envoyer 3 valeurs.",
+	"instructions": "Utilisez l'instruction \"input\" pour récupérer une valeur, et l'instruction \"output\" pour l'envoyer.\nVous devez envoyer 3 valeurs.",
+	"available_instructions": ["input", "output"],
 	"level": [
 		[ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 		[ 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 ],
 		[ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
 		[ 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0 ],
 		[ 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ],
-		[ 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0 ],
+		[ 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ],
 		[ 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 ],
 		[ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 ],
 		[ 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0 ],

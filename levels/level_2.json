@@ -1,5 +1,8 @@
 {
 	"level_number": 2,
+	"title": "En boucle, en boucle, en boucle...",
+	"instructions": "Utilisez les instructions \"jump_from\" et \"jump_to\" avec une même valeur pour créer une boucle.",
+	"available_instructions": ["input", "output", "jump_from", "jump_to"],
 	"level" : [
 		[0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0],
