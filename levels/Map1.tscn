@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ng2e4uud0430"]
+[gd_scene load_steps=2 format=3 uid="uid://6pgb08t6xcw5"]
 
-[ext_resource type="MeshLibrary" uid="uid://7idg2wtawjdy" path="res://generation/CityTiles.tres" id="2_pgvqm"]
+[ext_resource type="MeshLibrary" uid="uid://debebc7m1riwr" path="res://generation/CityTiles.tres" id="2_pgvqm"]
 
 [node name="Node3D" type="Node3D"]
 

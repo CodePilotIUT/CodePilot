@@ -8,11 +8,11 @@
 [ext_resource type="Script" path="res://scripts/ingame/code_panel.gd" id="2_wmvx3"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_wqp75"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_27w7h"]
-[ext_resource type="PackedScene" uid="uid://bre813ww5moq2" path="res://scenes/ingame/3d_view.tscn" id="3_d5hdc"]
 [ext_resource type="Texture2D" uid="uid://8n0m58rvp7w0" path="res://resources/2D Textures/empty_code_editor.png" id="5_1gdww"]
 [ext_resource type="LabelSettings" uid="uid://mjqp32dpb60h" path="res://themes/label_empty_code_editor.tres" id="6_68ksv"]
 [ext_resource type="LabelSettings" uid="uid://puq36j2mh8jv" path="res://themes/label_instructions_title.tres" id="8_ljwso"]
 [ext_resource type="LabelSettings" uid="uid://b8y712ekis14j" path="res://themes/label_instructions_text.tres" id="9_oi0ba"]
+[ext_resource type="PackedScene" uid="uid://bif45q417ctb7" path="res://scenes/ingame/mapDynamique.tscn" id="14_yjuyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkb2t"]
 bg_color = Color(0, 0, 0, 0.639216)
@@ -385,7 +385,7 @@ stretch_mode = 6
 size = Vector2i(1080, 1080)
 size_2d_override_stretch = true
 
-[node name="Node3D" parent="MarginContainer/HSplitContainer/3dViewPanel/SubViewport" instance=ExtResource("3_d5hdc")]
+[node name="MapDynamique" parent="MarginContainer/HSplitContainer/3dViewPanel/SubViewport" instance=ExtResource("14_yjuyk")]
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/3dViewPanel"]
 layout_mode = 1

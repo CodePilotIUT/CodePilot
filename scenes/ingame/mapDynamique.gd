@@ -16,7 +16,7 @@ func randomOrientation():
 		return 22
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var file = "res://levels/level_1.json"
+	var file = "res://levels/level_2.json"
 	var json_as_text = FileAccess.get_file_as_string(file)
 	var json = JSON.parse_string(json_as_text)
 	var level = json["level"]
