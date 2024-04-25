@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bif45q417ctb7"]
+[gd_scene load_steps=21 format=3 uid="uid://bif45q417ctb7"]
 
 [ext_resource type="Script" path="res://scripts/ingame/mapDynamique.gd" id="1_4uo4l"]
 [ext_resource type="MeshLibrary" uid="uid://debebc7m1riwr" path="res://generation/CityTiles.tres" id="1_6fnjb"]
+[ext_resource type="Script" path="res://scripts/ingame/camera_3D.gd" id="3_5w7tl"]
 [ext_resource type="Environment" uid="uid://53xfuegkn0dn" path="res://themes/3d_view_environment.tres" id="3_bj6xl"]
 [ext_resource type="CameraAttributesPractical" uid="uid://ceditvf7r6c85" path="res://themes/3d_camera_attributes.tres" id="4_q17te"]
 [ext_resource type="Script" path="res://scripts/ingame/Path3D.gd" id="5_hluin"]
@@ -269,6 +270,7 @@ projection = 1
 size = 40.0
 near = 200.0
 far = 400.0
+script = ExtResource("3_5w7tl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_bj6xl")
