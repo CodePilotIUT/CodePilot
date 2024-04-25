@@ -9,7 +9,7 @@ var code_blocks = [
 	{
 		"label": "outbox",
 		"color": [156, 182, 92],
-		"has_input": true
+		"has_input": false
 	},
 	{
 		"label": "copyfrom",
