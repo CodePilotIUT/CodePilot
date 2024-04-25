@@ -2,12 +2,12 @@ extends Node
 
 var code_blocks = [
 	{
-		"label": "inbox",
+		"label": "input",
 		"color": [156, 182, 92],
 		"has_input": false
 	},
 	{
-		"label": "outbox",
+		"label": "output",
 		"color": [156, 182, 92],
 		"has_input": false
 	},
@@ -42,22 +42,22 @@ var code_blocks = [
 		"has_input": false
 	},
 	{
-		"label": "goto",
+		"label": "jump_from",
 		"color": [141, 141, 193],
 		"has_input": true
 	},
 	{
-		"label": "goto if zero",
+		"label": "jump_from if zero",
 		"color": [141, 141, 193],
 		"has_input": true
 	},
 	{
-		"label": "goto if neg",
+		"label": "jump_from if neg",
 		"color": [141, 141, 193],
 		"has_input": true
 	},
 	{
-		"label": "label",
+		"label": "jump_to",
 		"color": [141, 141, 193],
 		"has_input": true
 	}
@@ -83,3 +83,9 @@ func get_code_block(label: String) -> CodeBlock:
 	cb.set_background_color(CodeBlocks.get_color(cb_dict.get("color")))
 	cb.set_input_visibility(cb_dict.get("has_input"))
 	return cb
+
+func get_all_code_blocks() -> Array[CodeBlock]:
+	var cbs: Array[CodeBlock] = []
+	for cb in code_blocks:
+		cbs.append(get_code_block(cb["label"]))
+	return cbs
