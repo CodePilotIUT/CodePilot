@@ -19,12 +19,20 @@ func init_save_dir():
 		DirAccess.make_dir_recursive_absolute(save_dir_path)
 
 func save_level(level_number, data):
+	if level_number == null:
+		return
+	level_number = int(level_number)
+	
 	var file_path = save_dir_path + "level_%d.codepilot" % level_number
 	print("Saving to: " + file_path)
 	var file = FileAccess.open(file_path, FileAccess.WRITE_READ)
 	file.store_string(data)
 
-func load_level_as_text(level_number: int) -> String:
+func load_level_as_text(level_number) -> String:
+	if level_number == null:
+		return ""
+	level_number = int(level_number)
+	
 	var file_path = save_dir_path + "level_%d.codepilot" % level_number
 	print("Loading from: " + file_path)
 	
@@ -34,7 +42,7 @@ func load_level_as_text(level_number: int) -> String:
 	var data = file.get_as_text()
 	return data
 
-func load_level_as_code_dict(level_number: int) -> Array[Dictionary]:
+func load_level_as_code_dict(level_number) -> Array[Dictionary]:
 	var data = load_level_as_text(level_number)
 
 	var code_blocks: Array[Dictionary] = []
@@ -61,7 +69,7 @@ func load_level_as_code_dict(level_number: int) -> Array[Dictionary]:
 
 	return code_blocks
 
-func load_level_as_code_blocks(level_number: int) -> Array[CodeBlock]:
+func load_level_as_code_blocks(level_number) -> Array[CodeBlock]:
 	var code_blocks: Array[Dictionary] = load_level_as_code_dict(level_number)
 
 	var code_block_nodes: Array[CodeBlock] = []

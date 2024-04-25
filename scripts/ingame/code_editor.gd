@@ -3,18 +3,20 @@ extends Panel
 const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
 const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
-var saved: bool = true
+var saved: bool
 
 
 func _ready():
-	var code_blocks = SaveManager.load_level_as_code_blocks(GameData.get_value("level_number"))
+	var level_number = GameData.get_value_or_null("level_number")
+	var code_blocks = SaveManager.load_level_as_code_blocks(level_number)
 	for cb: CodeBlock in code_blocks:
 		add_code_block(cb)
+	saved = true
 
 
 func _on_code_editor_update():
-	check_empty()
 	saved = false
+	check_empty()
 
 
 # Debug
@@ -70,7 +72,7 @@ func del_code_block(cb: Control):
 
 func _on_save_button_pressed():
 	var code = get_code_as_string()
-	var level_number = GameData.get_value("level_number")
+	var level_number = GameData.get_value_or_null("level_number")
 	SaveManager.save_level(level_number, code)
 	saved = true
 
