@@ -14,13 +14,12 @@ func randomOrientation():
 		return 16
 	elif nbr <= 1:
 		return 22
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var file = "res://levels/level_2.json"
-	var json_as_text = FileAccess.get_file_as_string(file)
-	var json = JSON.parse_string(json_as_text)
-	var level = json["level"]
-	print(level)
+	var level = GameData.get_value_or_null("level")
+	if level == null:
+		level = []
 	
 	for i in range(len(level)):
 		for j in range(len(level[0])):
