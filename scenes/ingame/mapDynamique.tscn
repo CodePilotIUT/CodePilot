@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bif45q417ctb7"]
+[gd_scene load_steps=20 format=3 uid="uid://bif45q417ctb7"]
 
 [ext_resource type="Script" path="res://scripts/ingame/mapDynamique.gd" id="1_4uo4l"]
 [ext_resource type="MeshLibrary" uid="uid://debebc7m1riwr" path="res://generation/CityTiles.tres" id="1_6fnjb"]
 [ext_resource type="Environment" uid="uid://53xfuegkn0dn" path="res://themes/3d_view_environment.tres" id="3_bj6xl"]
 [ext_resource type="CameraAttributesPractical" uid="uid://ceditvf7r6c85" path="res://themes/3d_camera_attributes.tres" id="4_q17te"]
 [ext_resource type="Script" path="res://scripts/ingame/Path3D.gd" id="5_hluin"]
+[ext_resource type="AudioStream" uid="uid://dclkytuu7glnl" path="res://resources/audio/car_engine.wav" id="6_11ocv"]
+[ext_resource type="AudioStream" uid="uid://qgjwgd2aay5s" path="res://resources/audio/city_background.wav" id="7_gdtsb"]
 
 [sub_resource type="Curve3D" id="Curve3D_vjfoy"]
 
@@ -279,6 +281,8 @@ script = ExtResource("5_hluin")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 transform = Transform3D(0.999977, 0, 0, 0, 1, 0, 0, 0, 0.999977, 0, 0, 0)
+loop = false
+tilt_enabled = false
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="Path3D/PathFollow3D"]
 gravity_scale = 0.0
@@ -290,3 +294,13 @@ mesh = SubResource("ArrayMesh_8gf4t")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/VehicleBody3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_3gayh")
+
+[node name="AudioStreamPlayer_Car" type="AudioStreamPlayer" parent="Path3D/PathFollow3D/VehicleBody3D"]
+unique_name_in_owner = true
+stream = ExtResource("6_11ocv")
+volume_db = -15.0
+
+[node name="AudioStreamPlayer_BG" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_gdtsb")
+autoplay = true
