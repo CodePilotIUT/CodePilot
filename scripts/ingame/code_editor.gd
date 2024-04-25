@@ -5,7 +5,6 @@ const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
 
 func _ready():
-	GameData.load_level_data()
 	var code_blocks = SaveManager.load_level_as_code_blocks(GameData.get_value("level_number"))
 	for cb: CodeBlock in code_blocks:
 		add_code_block(cb)

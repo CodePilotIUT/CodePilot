@@ -3,6 +3,10 @@ extends Node
 var current_level_path: String = ""
 var current_level_data: Dictionary = {}
 
+func load_level(path: String):
+	set_level_path(path)
+	load_level_data()
+
 func set_level_path(path: String):
 	current_level_path = path
 

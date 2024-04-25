@@ -3,7 +3,7 @@ extends Control
 
 func _on_button_pressed():
 	var level_path = self.get_meta("level_path")
-	GameData.set_level_path(level_path)
+	GameData.load_level(level_path)
 	get_tree().change_scene_to_file("res://scenes/ingame/ingame.tscn")
 	print("Button pressed with path: " + level_path)
 
