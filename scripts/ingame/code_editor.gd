@@ -14,11 +14,17 @@ func _ready():
 		add_code_block(cb)
 	
 	# load instructions from level file
-	print(%Instructions)
-	print(%LabelLevelTitle)
-	print(%LabelLevelInstructions)
-	%LabelLevelTitle.text = GameData.get_value_or_null("title")
-	%LabelLevelInstructions.text = GameData.get_value_or_null("instructions")
+	var level_title = GameData.get_value_or_null("title")
+	if level_title != null:
+		%LabelLevelTitle.text = level_title
+	else:
+		%LabelLevelTitle.text = "Level %s" % level_number
+	
+	var level_instructions = GameData.get_value_or_null("instructions")
+	if level_instructions != null:
+		%LabelLevelInstructions.text = level_instructions
+	else:
+		%LabelLevelInstructions.text = "..."
 	
 	saved = true
 
