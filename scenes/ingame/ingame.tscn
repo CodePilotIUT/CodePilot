@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7hmr543x1msv"]
+[gd_scene load_steps=19 format=3 uid="uid://c7hmr543x1msv"]
 
 [ext_resource type="Script" path="res://scripts/ingame/code_library_panel.gd" id="1_7g3jo"]
 [ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
@@ -11,6 +11,7 @@
 [ext_resource type="LabelSettings" uid="uid://mjqp32dpb60h" path="res://themes/label_empty_code_editor.tres" id="6_68ksv"]
 [ext_resource type="LabelSettings" uid="uid://puq36j2mh8jv" path="res://themes/label_instructions_title.tres" id="8_ljwso"]
 [ext_resource type="LabelSettings" uid="uid://b8y712ekis14j" path="res://themes/label_instructions_text.tres" id="9_oi0ba"]
+[ext_resource type="Script" path="res://scripts/ingame/3d_view_panel.gd" id="12_d5tse"]
 [ext_resource type="PackedScene" uid="uid://bif45q417ctb7" path="res://scenes/ingame/mapDynamique.tscn" id="14_yjuyk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkb2t"]
@@ -366,6 +367,7 @@ clip_contents = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("12_d5tse")
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HSplitContainer/3dViewPanel"]
 clip_contents = true
@@ -384,6 +386,7 @@ size = Vector2i(1080, 1080)
 size_2d_override_stretch = true
 
 [node name="MapDynamique" parent="MarginContainer/HSplitContainer/3dViewPanel/SubViewport" instance=ExtResource("14_yjuyk")]
+unique_name_in_owner = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HSplitContainer/3dViewPanel"]
 layout_mode = 1
