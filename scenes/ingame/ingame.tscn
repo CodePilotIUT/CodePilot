@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://c7hmr543x1msv"]
+[gd_scene load_steps=18 format=3 uid="uid://c7hmr543x1msv"]
 
 [ext_resource type="Script" path="res://scripts/ingame/code_library_panel.gd" id="1_7g3jo"]
-[ext_resource type="Script" path="res://scenes/ingame/ingame.gd" id="1_g2kl6"]
 [ext_resource type="Script" path="res://scripts/ingame/code_editor.gd" id="1_qkkdi"]
 [ext_resource type="Script" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_1qtbh"]
 [ext_resource type="LabelSettings" uid="uid://x6c0xu83ljgg" path="res://themes/label_title2.tres" id="2_qs5s0"]
@@ -42,7 +41,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_g2kl6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 clip_contents = true
