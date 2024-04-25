@@ -13,6 +13,8 @@ config_version=5
 config/name="CodePilot"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://splash_screen.png"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -20,6 +22,10 @@ config/icon="res://icon.svg"
 GameData="*res://scripts/game_data.gd"
 SaveManager="*res://scripts/save_manager.gd"
 CodeBlocks="*res://scripts/code_blocks.gd"
+
+[display]
+
+mouse_cursor/custom_image="res://resources/2D Textures/cursor.svg"
 
 [editor_plugins]
 
