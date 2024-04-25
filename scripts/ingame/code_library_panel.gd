@@ -4,7 +4,7 @@ var code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
 var code_editor: Panel
 var code_library: Panel
 
-var width: int = 300
+var width: int = 250
 var is_open: bool = true
 
 func _ready():

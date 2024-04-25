@@ -52,7 +52,7 @@ var code_blocks = [
 		"has_input": true
 	},
 	{
-		"label": "goto if negative",
+		"label": "goto if neg",
 		"color": [141, 141, 193],
 		"has_input": true
 	},

@@ -70,7 +70,7 @@ self_modulate = Color(0, 0, 0, 1)
 clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 15
-split_offset = 100
+split_offset = 50
 
 [node name="CodePanel" type="Panel" parent="MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
