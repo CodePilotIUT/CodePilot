@@ -74,7 +74,7 @@ func get_code_block_dict(label: String) -> Dictionary:
 
 func get_code_block(label: String) -> CodeBlock:
 	var cb_dict = get_code_block_dict(label)
-	if cb_dict == null:
+	if cb_dict == null or cb_dict == {}:
 		return null
 
 	const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
