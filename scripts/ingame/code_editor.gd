@@ -7,10 +7,19 @@ var saved: bool
 
 
 func _ready():
+	# load codeblocks from save
 	var level_number = GameData.get_value_or_null("level_number")
 	var code_blocks = SaveManager.load_level_as_code_blocks(level_number)
 	for cb: CodeBlock in code_blocks:
 		add_code_block(cb)
+	
+	# load instructions from level file
+	print(%Instructions)
+	print(%LabelLevelTitle)
+	print(%LabelLevelInstructions)
+	%LabelLevelTitle.text = GameData.get_value_or_null("title")
+	%LabelLevelInstructions.text = GameData.get_value_or_null("instructions")
+	
 	saved = true
 
 
