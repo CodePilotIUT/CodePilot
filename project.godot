@@ -25,6 +25,7 @@ CodeBlocks="*res://scripts/code_blocks.gd"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 mouse_cursor/custom_image="res://resources/2D Textures/cursor.svg"
 
 [editor_plugins]

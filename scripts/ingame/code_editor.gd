@@ -3,12 +3,21 @@ extends Panel
 const code_block_scene = preload("res://scenes/ingame/elements/code_block.tscn")
 const code_block_script = preload("res://scripts/ingame/code_block.gd")
 
+var saved: bool = true
+
 
 func _ready():
 	var code_blocks = SaveManager.load_level_as_code_blocks(GameData.get_value("level_number"))
 	for cb: CodeBlock in code_blocks:
 		add_code_block(cb)
 
+
+func _on_code_editor_update():
+	check_empty()
+	saved = false
+
+
+# Debug
 func populate_randomly(n):
 	for i in range(n):
 		# Chose random color
@@ -27,9 +36,11 @@ func populate_randomly(n):
 
 		add_new_code_block(line, Color(r, g, b), has_input)
 
+# Debug
 func populate_with_every_code_block_possible():
 	for cb in CodeBlocks.code_blocks:
 		add_new_code_block(cb.label, CodeBlocks.get_color(cb.color), cb.has_input)
+
 
 
 func add_new_code_block(label: String, color: Color = Color.WHITE, has_input: bool = false, input: String = "", pos: int = -1):
@@ -56,17 +67,38 @@ func del_code_block(cb: Control):
 	cb.queue_free()
 
 
+
 func _on_save_button_pressed():
 	var code = get_code_as_string()
 	var level_number = GameData.get_value("level_number")
 	SaveManager.save_level(level_number, code)
+	saved = true
 
 func _on_clear_button_pressed():
 	clear()
 
 func _on_exit_button_pressed():
+	if not saved:
+		# Make a popup to ask if the user wants to save the code
+		%SaveAndExitPopup.show()
+	else:
+		_on_exit()
+
+func _on_any_popup_button_pressed():
+	%SaveAndExitPopup.hide()
+
+func _on_exit():
 	get_tree().change_scene_to_file("res://scenes/menus/levels_menu.tscn")
 	GameData.clear_level_data()
+
+func _on_save_and_exit():
+	_on_save_button_pressed()
+	_on_exit()
+
+func _on_cancel():
+	pass
+
+
 
 func get_list() -> Array[CodeBlock]:
 	var list: Array[CodeBlock] = []
@@ -109,6 +141,3 @@ func check_empty():
 		%EmptyMsg.hide()
 	else:
 		%EmptyMsg.show()
-
-func _on_code_editor_update():
-	check_empty()

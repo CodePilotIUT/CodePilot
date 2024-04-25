@@ -411,6 +411,52 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Play ▶"
 
+[node name="SaveAndExitPopup" type="Window" parent="."]
+unique_name_in_owner = true
+title = "Savegarder ?"
+initial_position = 2
+size = Vector2i(381, 105)
+wrap_controls = true
+transient = true
+exclusive = true
+unresizable = true
+always_on_top = true
+popup_window = true
+keep_title_visible = true
+
+[node name="MarginContainer" type="MarginContainer" parent="SaveAndExitPopup"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveAndExitPopup/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SaveAndExitPopup/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Voulez-vous sauvegarder votre progression avant de quitter ?"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveAndExitPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonYes" type="Button" parent="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "   Oui   "
+
+[node name="ButtonNo" type="Button" parent="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "   Non   "
+
+[node name="ButtonCancel" type="Button" parent="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "   Annuler et revenir au jeu   "
+
 [connection signal="pressed" from="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/ButtonHideShow" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/HBoxContainer/CodeLibraryPanel" method="_on_button_hide_show_pressed"]
 [connection signal="sort_children" from="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/CodeEditor" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_code_editor_update"]
 [connection signal="sort_children" from="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/CodeEditor" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/MarginContainer/CodeEditor" method="_on_sort_children"]
@@ -418,3 +464,9 @@ text = "Play ▶"
 [connection signal="pressed" from="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/Buttons/SaveButton" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel/MarginContainer/VBoxContainer/Buttons/ClearButton" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_clear_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/3dViewPanel/MarginContainer/ToggleFullscreenButton" to="MarginContainer/HSplitContainer/CodePanel" method="toggle_code_panel"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonYes" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_save_and_exit"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonYes" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_any_popup_button_pressed"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonNo" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_exit"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonNo" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_any_popup_button_pressed"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_cancel"]
+[connection signal="pressed" from="SaveAndExitPopup/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel" to="MarginContainer/HSplitContainer/CodePanel/MarginContainer/HSplitContainer/CodeEditorPanel" method="_on_any_popup_button_pressed"]
