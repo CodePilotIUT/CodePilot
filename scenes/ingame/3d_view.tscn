@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://bre813ww5moq2"]
+[gd_scene load_steps=16 format=3 uid="uid://bre813ww5moq2"]
 
 [ext_resource type="Environment" uid="uid://53xfuegkn0dn" path="res://themes/3d_view_environment.tres" id="1_g5b33"]
+[ext_resource type="Script" path="res://scripts/ingame/Path3D.gd" id="2_j78fx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh1v3"]
 albedo_color = Color(0.213737, 0.884352, 0.310658, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_o2n5v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4a4r2"]
 resource_name = "Body"
@@ -259,22 +262,31 @@ material = SubResource("StandardMaterial3D_qh1v3")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
 environment = ExtResource("1_g5b33")
 
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
-gravity_scale = 0.0
-
-[node name="Car" type="MeshInstance3D" parent="VehicleBody3D"]
-mesh = SubResource("ArrayMesh_8f7bp")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
-shape = SubResource("ConvexPolygonShape3D_gslpv")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.985253, 0.144544, -0.0915614, 0, 0.535123, 0.844774, 0.171103, -0.832316, 0.527231, -1.798, 25.411, 14.596)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 50, 0)
 keep_aspect = 0
 environment = ExtResource("1_g5b33")
 projection = 1
 fov = 104.063
-size = 36.714
+size = 50.0
 near = 10.0
 far = 100.0
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_o2n5v")
+script = ExtResource("2_j78fx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.999977, 0, 0, 0, 1, 0, 0, 0, 0.999977, 0, 0, 0)
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="Path3D/PathFollow3D"]
+gravity_scale = 0.0
+
+[node name="Car" type="MeshInstance3D" parent="Path3D/PathFollow3D/VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("ArrayMesh_8f7bp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Path3D/PathFollow3D/VehicleBody3D"]
+shape = SubResource("ConvexPolygonShape3D_gslpv")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Path3D/PathFollow3D/VehicleBody3D"]
