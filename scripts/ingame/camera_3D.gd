@@ -1,30 +1,28 @@
 extends Camera3D
  
-@onready var noise = FastNoiseLite.new()
+@onready var noise_h = FastNoiseLite.new()
+@onready var noise_v = FastNoiseLite.new()
  
-@export var amplitude : float = 10.0
- 
-var trauma = 0.3
-var trauma_power = 2
-var NOISE_SPEED = 0.05
-var _noise_y = 0
+var amount = 1
+var NOISE_SPEED = 10
+var noise_progress = 0
  
 func _ready():
+	h_offset = 0
+	v_offset = 0
+
 	randomize()
-	noise.seed = randi()
-	noise.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise_h.seed = randi()
+	noise_h.noise_type = FastNoiseLite.TYPE_PERLIN
+	noise_v.seed = randi()
+	noise_v.noise_type = FastNoiseLite.TYPE_PERLIN
  
-func _physics_process(delta):
-	if trauma:
-		trauma = max(trauma, 0)
-		_noise_y += NOISE_SPEED
-		_shake()
- 
-func add_trauma(amount: float):
-	trauma = min(trauma + amount, 1.0)
+func _process(delta):
+	noise_progress += NOISE_SPEED * delta
+	_shake()
  
 func _shake():
-	var amount = pow(trauma,trauma_power)
-	h_offset =  amplitude * amount * noise.get_noise_2d(noise.seed,_noise_y)
-	v_offset =  amplitude * amount * noise.get_noise_2d(noise.seed*2,_noise_y)
+	h_offset = amount * noise_h.get_noise_1d(noise_progress)
+	v_offset = amount * noise_v.get_noise_1d(noise_progress)
+	print(h_offset, v_offset)
 	
