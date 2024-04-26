@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bre813ww5moq2"]
+[gd_scene load_steps=16 format=3 uid="uid://csxhg5m5va307"]
 
 [ext_resource type="Environment" uid="uid://53xfuegkn0dn" path="res://themes/3d_view_environment.tres" id="1_g5b33"]
 [ext_resource type="Script" path="res://scripts/ingame/Path3D.gd" id="2_j78fx"]
